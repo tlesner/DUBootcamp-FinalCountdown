@@ -10,3 +10,4 @@ It's the Final Countdown.
 - What did we learn?
     - The team learned how to work in the git/github environment.
     - The team learned how to pull, push and merge requests.
+    
