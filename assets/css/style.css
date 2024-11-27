@@ -1,110 +1,268 @@
-/* Root Element */
-#root {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Header Styling */
+/*-----Header-----*/
 header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #4a90e2, #007aff);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    transition: color 0.3s ease;
+}
+
+header h1:hover {
+    color: #007aff;
+}
+
+.theme-buttons {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Theme Buttons: Styled the same as Control Buttons */
+.theme-button {
+    background-color: #ffffff; /* Same background as control buttons */
+    color: #333333; /* Same text color as control buttons */
+    border: 1px solid #333; /* Same border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Same padding as control buttons */
+    font-size: 1rem; /* Adjust font size for consistency */
+    cursor: pointer; /* Pointer cursor for clickability */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth hover transition */
+    text-align: center; /* Center-align text */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.theme-button:hover {
+    background-color: #f1f1f1; /* Lighter background on hover */
+    border-color: #007aff; 
+}
+
+#toggle-theme {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#toggle-theme:hover {
+    color: #f1c40f;
+    transform: scale(1.2);
+}
+/*-----Main-----*/
+/* Main Container */
+.main-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px;
+    border: 3px solid #333;
+    border-radius: 15px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+/* Timer Window */
+.timer-window {
     background-color: #f9f9f9;
     border: 2px solid #333;
     border-radius: 10px;
-    margin: 10px 0;
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Timer Window Styling */
-.timer-window {
+    max-width: 650px;
     text-align: center;
     position: relative;
     padding: 20px;
-    border: 2px solid #333; /* Solid border for the box */
-    border-radius: 10px; /* Rounded corners */
-    width: 100%; /* Flexible width for responsiveness */
-    height: 70%; /* Flexible height for responsiveness*/
-    background-color: #f9f9f9; /* Light background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for depth */
-    margin: 20px auto; /* Center the box horizontally */
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-bottom: 20px;
 }
 
-.timer-inputs {
-    position: relative;
-    display: inline-block;
+/* Timer Image Container */
+.timer-image-container {
+    position: relative; /* Allows overlay positioning */
+    display: inline-block; /* Ensures the image and overlay align properly */
     width: 100%;
+    max-width: 600px; /* Restricts image size */
+    text-align: center;
 }
 
-.timer-inputs img {
-    width: 100%;
-    max-width: 1200px;
+.timer-image {
+    max-width: 100%;
     height: auto;
+    border: 2px solid #333;
     border-radius: 10px;
 }
 
+/* Input Overlay: Center Inputs on Image */
 .input-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Adds space between inputs */
 }
 
 .input-overlay input {
-    width: 50px;
-    padding: 5px;
-    text-align: center;
-    font-size: 16px;
-    border: 1px solid #333;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    color: #333;
+    border: 2px solid #333;
     border-radius: 5px;
+    padding: 10px;
+    width: 60px;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .input-overlay span {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
 }
 
-/* Footer Styling */
-footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    background-color: #fff;
+/* Controls Container */
+.controls-container {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: #f1f1f1;
     border: 2px solid #333;
     border-radius: 10px;
-    margin: 10px 0;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer Buttons */
+/* Controls Section */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
 .control-button {
-    padding: 10px 20px;
-    font-size: 1em;
+    background-color: #ffffff;
+    color: #333333;
     border: 1px solid #333;
-    background-color: #fff;
-    cursor: pointer;
     border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
+
 .control-button:hover {
-    background-color: #f9f9f9;
+    background-color: #f1f1f1;
 }
 
-/* Sydneys CSS Theme */
 
-/* Justin's CSS Theme */
+/*-----Footer-----*/
+footer {
+    padding: 15px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #007aff, #4a90e2);
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-/* Josh's CSS Theme */
+footer p {
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 
-/* Tom's CSS Theme */
+footer i.fa-hat-wizard {
+    color: #f1c40f;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/*-----Tablet/Smatphones-----*/
+@media (max-width: 768px) {
+    .main-container {
+        max-width: 90%; /* Adjusts width for smaller screens */
+    }
+
+    .timer-window {
+        max-width: 90%; /* Shrinks content proportionally */
+    }
+
+    .control-button {
+        padding: 10px 20px; /* Adjusts button size for smaller screens */
+        font-size: 1rem;
+    }
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+    background-color: #121212; /* Dark background */
+    color: #f9f9f9; /* Light text */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+body.dark-theme header {
+    background: linear-gradient(135deg, #333, #222); /* Dark gradient */
+    color: #f9f9f9; /* Light header text */
+}
+
+body.dark-theme .timer-window,
+body.dark-theme .controls-container {
+    background-color: #333;
+    border-color: #555;
+}
+
+body.dark-theme .control-button {
+    background-color: #444;
+    color: #f9f9f9;
+    border-color: #666;
+}
+
+body.dark-theme .theme-button {
+    background-color: #444;
+    color: #f9f9f9;
+    border-color: #666;
+}
+
+
+/*-----Bonus Area-----*/
+/* Keyframes for shake animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Hover effect for the wizard hat icon */
+footer i.fa-hat-wizard:hover {
+    animation: shake 0.5s ease-in-out; /* Trigger shake animation on hover */
+    color: #ff6347; /* Optional: Change color on hover (e.g., tomato red) */
+    cursor: pointer; /* Indicate interactivity */
+}
