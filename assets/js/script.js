@@ -1,3 +1,5 @@
+
+
 // Select elements
 const hoursInput = document.getElementById('hours');
 const minutesInput = document.getElementById('minutes');
@@ -83,3 +85,36 @@ playButton.addEventListener('click', () => {
 });
 pauseButton.addEventListener('click', pauseCountdown);
 resetButton.addEventListener('click', resetCountdown);
+
+// Theme Toggling
+const toggleThemeButton = document.getElementById('toggle-theme'); // Select theme toggle button
+let isDarkMode = false; // Default theme is light
+
+// Function to toggle the theme
+function switchTheme() {
+    isDarkMode = !isDarkMode;
+
+    if (isDarkMode) {
+        document.body.classList.add('dark-theme');
+        toggleThemeButton.textContent = '🌙'; // Update button icon
+    } else {
+        document.body.classList.remove('dark-theme');
+        toggleThemeButton.textContent = '🌞'; // Reset button icon
+    }
+
+    // Save the theme preference
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+}
+
+// Apply saved theme on load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        isDarkMode = true;
+        document.body.classList.add('dark-theme');
+        toggleThemeButton.textContent = '🌙';
+    }
+});
+
+// Event listener for theme toggle
+toggleThemeButton.addEventListener('click', switchTheme);
