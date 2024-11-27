@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <title>Background Example</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://kit.fontawesome.com/c7ff28da03.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="title">
+          <h1>Countdown Timer</h1>
+        </div>
+        
+        <div class="theme-center">
+          <div class="theme-buttons">
+            <button class="theme-button">Theme 1</button>
+            <button class="theme-button">Theme 2</button>
+            <button class="theme-button">Theme 3</button>
+            <button class="theme-button">Theme 4</button>
+          </div>
+          <div class="theme-text">Choose a Theme Anytime</div>
+        </div>
+        
+        <div class="right-toggle">
+          <button id="toggle-theme">🌞</button>
+        </div>
+      </header>
+      <main>
+        <div class="main-container">
+            <div class="timer-window">
+                <div class="timer-inputs">
+                    <img src="assets/images/Fianl-coundown-img-1.jpg" alt="Timer Window Image" class="timer-image">
+                    <div class="input-overlay">
+                        <input type="number" id="hours" placeholder="HH" min="0" max="23">
+                        <span>:</span>
+                        <input type="number" id="minutes" placeholder="MM" min="0" max="59">
+                        <span>:</span>
+                        <input type="number" id="seconds" placeholder="SS" min="0" max="59">
+                    </div>
+                </div>
+            </div>
+            <div class="controls-container">
+                <div class="controls">
+                    <button class="control-button">Play/Pause</button>
+                    <button class="control-button">Reset</button>
+                    <button class="control-button">Reload</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <p>&copy; We Did This! <i class="fa-solid fa-hat-wizard"></i></p>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
