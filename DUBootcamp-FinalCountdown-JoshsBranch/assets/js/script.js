@@ -1,120 +1,187 @@
-
+// Countdown variables
+let countdownInterval;
+let totalSeconds = 0; // Default countdown to 0 seconds
+let isCounting = false;
 
 // Select elements
-const hoursInput = document.getElementById('hours');
-const minutesInput = document.getElementById('minutes');
-const secondsInput = document.getElementById('seconds');
-const playButton = document.querySelector('.control-button:nth-child(1)');
-const pauseButton = document.querySelector('.control-button:nth-child(2)');
-const resetButton = document.querySelector('.control-button:nth-child(3)');
+const timerElement = document.getElementById("timer");
+const playPauseButton = document.getElementById("play-pause"); // Play/Pause button
+const resetButton = document.getElementById("reset");
+const reloadButton = document.getElementById("reload");
 
-let countdownInterval; // Variable to hold the interval
-let totalSeconds; // Total countdown time in seconds
-let initialHours, initialMinutes, initialSeconds; // To store initial input values for reset functionality
-let isCounting = false; // State to track if the countdown is running
+const hoursInput = document.getElementById("hours");
+const minutesInput = document.getElementById("minutes");
+const secondsInput = document.getElementById("seconds");
+
+const toggleThemeButton = document.getElementById("toggle-theme"); // Sun icon button for theme toggle
 
 // Function to update the displayed time
 function updateDisplay() {
-    let hours = Math.floor(totalSeconds / 3600);
-    let minutes = Math.floor((totalSeconds % 3600) / 60);
-    let seconds = totalSeconds % 60;
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
-    hoursInput.value = String(hours).padStart(2, '0');
-    minutesInput.value = String(minutes).padStart(2, '0');
-    secondsInput.value = String(seconds).padStart(2, '0');
+    // Update the input fields with remaining time
+    hoursInput.value = hours < 10 ? `0${hours}` : hours;
+    minutesInput.value = minutes < 10 ? `0${minutes}` : minutes;
+    secondsInput.value = seconds < 10 ? `0${seconds}` : seconds;
+
+    // Update the display timer
+    timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-// Function to start the countdown
-function startCountdown() {
-    if (isCounting) return; // Prevent multiple intervals
-    isCounting = true;
-
-    // Get time from inputs and convert to total seconds
-    totalSeconds =
-        parseInt(hoursInput.value || '0') * 3600 +
-        parseInt(minutesInput.value || '0') * 60 +
-        parseInt(secondsInput.value || '0');
-
-    // Update the display immediately
-    updateDisplay();
-
-    // Set interval to update the countdown
-    countdownInterval = setInterval(() => {
-        if (totalSeconds <= 0) {
-            clearInterval(countdownInterval);
-            isCounting = false;
-            return; // Stop the countdown when it reaches 0
-        }
-
-        totalSeconds--;
-        updateDisplay(); // Update display each second
-    }, 1000);
+// Function to get the total time in seconds from the inputs
+function getTotalSeconds() {
+    const hours = parseInt(hoursInput.value) || 0;
+    const minutes = parseInt(minutesInput.value) || 0;
+    const seconds = parseInt(secondsInput.value) || 0;
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
-// Function to pause the countdown
-function pauseCountdown() {
+// Function to start or pause the countdown
+function toggleCountdown() {
+    if (isCounting) {
+        clearInterval(countdownInterval);
+        isCounting = false;
+        playPauseButton.textContent = "Play/Pause"; // Change button text to "Play/Pause"
+    } else {
+        totalSeconds = getTotalSeconds(); // Get the total time in seconds
+        countdownInterval = setInterval(() => {
+            if (totalSeconds <= 0) {
+                clearInterval(countdownInterval);
+                isCounting = false;
+                timerElement.textContent = "Time's up!";
+                playPauseButton.textContent = "Play/Pause"; // Reset the button text to "Play/Pause"
+            } else {
+                totalSeconds--;
+                updateDisplay(); // Update the display every second
+            }
+        }, 1000);
+        isCounting = true;
+        playPauseButton.textContent = "Pause"; // Change button text to "Pause"
+    }
+}
+
+// Function to reset the countdown to the initial state (stop the countdown, clear inputs)
+function resetCountdown() {
     clearInterval(countdownInterval);
     isCounting = false;
+    totalSeconds = 0; // Reset to 0 seconds
+    updateDisplay(); // Update the display to show 00:00:00
+    playPauseButton.textContent = "Play/Pause"; // Reset button text to "Play/Pause"
 }
 
-// Function to reset the countdown to the initial input values
-function resetCountdown() {
-    clearInterval(countdownInterval); // Stop the timer if it's running
+// Function to reset all buttons and inputs (like a soft reset of the entire state)
+function resetButtonsAndInputs() {
+    // Stop any ongoing countdown
+    clearInterval(countdownInterval);
     isCounting = false;
 
-    // Reset the inputs to their initial values
-    hoursInput.value = String(initialHours).padStart(2, '0');
-    minutesInput.value = String(initialMinutes).padStart(2, '0');
-    secondsInput.value = String(initialSeconds).padStart(2, '0');
-    
-    // Also reset totalSeconds
-    totalSeconds = initialHours * 3600 + initialMinutes * 60 + initialSeconds;
+    // Reset the timer inputs to 00:00:00
+    hoursInput.value = "00";
+    minutesInput.value = "00";
+    secondsInput.value = "00";
 
-    // Update the display to reflect the reset time
+    // Reset the countdown display to 00:00:00
+    totalSeconds = 0;
     updateDisplay();
+
+    // Reset the Play/Pause button text back to "Play/Pause"
+    playPauseButton.textContent = "Play/Pause";
+
+    // Optionally, reset the Reset button text to its initial state (it should remain "Reset" by default)
+    resetButton.textContent = "Reset";
+
+    // Reset the Reload button text to its initial state (it should remain "Reload" by default)
+    reloadButton.textContent = "Reload";
 }
-
-// Event listeners for buttons
-playButton.addEventListener('click', () => {
-    // Store initial values when "Play" is clicked
-    initialHours = parseInt(hoursInput.value || '0');
-    initialMinutes = parseInt(minutesInput.value || '0');
-    initialSeconds = parseInt(secondsInput.value || '0');
-    
-    startCountdown();
-});
-pauseButton.addEventListener('click', pauseCountdown);
-resetButton.addEventListener('click', resetCountdown);
-
-// Theme Toggling
-const toggleThemeButton = document.getElementById('toggle-theme'); // Select theme toggle button
-let isDarkMode = false; // Default theme is light
 
 // Function to toggle the theme
-function switchTheme() {
-    isDarkMode = !isDarkMode;
+function toggleTheme() {
+    document.body.classList.toggle("dark-theme");
 
-    if (isDarkMode) {
-        document.body.classList.add('dark-theme');
-        toggleThemeButton.textContent = '🌙'; // Update button icon
+    // Change sun icon to moon icon when dark mode is active
+    if (document.body.classList.contains("dark-theme")) {
+        toggleThemeButton.textContent = "🌙"; // Change to moon icon
     } else {
-        document.body.classList.remove('dark-theme');
-        toggleThemeButton.textContent = '🌞'; // Reset button icon
+        toggleThemeButton.textContent = "🌞"; // Change to sun icon
     }
 
-    // Save the theme preference
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    // Save the theme to localStorage so it's remembered after page reload
+    const currentTheme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+    localStorage.setItem("theme", currentTheme);
 }
 
-// Apply saved theme on load
-window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        isDarkMode = true;
-        document.body.classList.add('dark-theme');
-        toggleThemeButton.textContent = '🌙';
+// Apply saved theme from localStorage
+window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        toggleThemeButton.textContent = "🌙"; // Change to moon icon
+    } else {
+        document.body.classList.remove("dark-theme");
+        toggleThemeButton.textContent = "🌞"; // Change to sun icon
     }
 });
 
-// Event listener for theme toggle
-toggleThemeButton.addEventListener('click', switchTheme);
+// Event listeners for buttons
+playPauseButton.addEventListener("click", toggleCountdown);
+resetButton.addEventListener("click", resetCountdown);
+reloadButton.addEventListener("click", resetButtonsAndInputs);  // Reset buttons and inputs
+toggleThemeButton.addEventListener("click", toggleTheme); // Theme toggle button click event
+
+// Initialize the display on page load
+updateDisplay();
+
+// Explosion Effect Code
+function createExplosion(e) {
+    const explosionContainer = document.createElement('div');
+    explosionContainer.style.position = 'absolute';
+    explosionContainer.style.top = '0';
+    explosionContainer.style.left = '0';
+    explosionContainer.style.pointerEvents = 'none';
+    explosionContainer.style.zIndex = '10000';
+    document.body.appendChild(explosionContainer);
+
+    const explosion = document.createElement('div');
+    explosion.style.position = 'absolute';
+    explosion.style.borderRadius = '50%';
+    explosion.style.backgroundColor = '#ff4e00'; // Orange color
+    explosion.style.animation = 'explode 0.6s ease-out forwards';
+    explosion.style.width = '50px';
+    explosion.style.height = '50px';
+
+    // Set the position where the explosion occurs (cursor position)
+    explosion.style.left = `${e.clientX - 25}px`;
+    explosion.style.top = `${e.clientY - 25}px`;
+
+    explosionContainer.appendChild(explosion);
+
+    // Cleanup explosion after animation
+    setTimeout(() => {
+        explosionContainer.remove();
+    }, 600);
+}
+
+// Add mouse click event listener to trigger the explosion effect
+document.addEventListener('click', createExplosion);
+
+// Add explosion animation through CSS
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes explode {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
