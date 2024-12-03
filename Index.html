@@ -13,40 +13,13 @@
         <div class="title">
           <h1>Countdown Timer</h1>
         </div>
-        
         <div class="theme-center">
-          <div class="theme-buttons">
-            <button id="myBtn1" class="theme-button">Theme 1</button>
-                <script>
-                    const myBtn1 = document.getElementById("myBtn");
-                    myBtn1.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme1.css"></link>
-                    });
-                </script>
-            <button id="myBtn2" class="theme-button">Theme 2</button>
-                <script>
-                    const myBtn2 = documment.getElementById("myBtn");
-                    myBtn2.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme2.css"></link>
-                    });  
-                </script>
-            <button id="myBtn3" class="theme-button">Theme 3</button>
-                <script>
-                    const myBtn3 = document.getElementById("myBtn");
-                    myBtn3.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme3.css"></link>
-                    });
-                </script>
-            <button id="myBtn4" class="theme-button">Theme 4</button>
-                <script>
-                    const myBtn4 = document.getElementById("myBtn");
-                    myBtn4.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme4.css"></link>
-                    });
-                </script>
-          </div>
-          <div class="theme-text">Choose a Theme Anytime</div>
-        </div>
+            <div class="theme-buttons">
+                <button class="theme-button" onclick="document.getElementById('themeImage').src='assets/images/image-1.jpg'">Theme 1</button>
+                <button class="theme-button" onclick="document.getElementById('themeImage').src='assets/images/image-2.jpg'">Theme 2</button>
+                <button class="theme-button" onclick="document.getElementById('themeImage').src='assets/images/prague-skyline.jpg'">Theme 3</button>
+                <button class="theme-button" onclick="document.getElementById('themeImage').src='assets/images/image-4.jpg'">Theme 4</button>
+            </div>
         
         <div class="right-toggle">
           <button id="toggle-theme">🌞</button>
@@ -57,7 +30,7 @@
         <div class="main-container">
             <div class="timer-window">
                 <div class="timer-inputs">
-                    <img src="assets/images/Final-coundown-img-1.jpg" alt="Timer Window Image" class="timer-image">
+                    <img id="themeImage" src="assets/images/Final-coundown-img-1.jpg" alt="Timer Window Image" class="timer-image">
                     <div class="input-overlay">
                         <input type="number" id="hours" placeholder="HH" min="0" max="23">
                         <span>:</span>
