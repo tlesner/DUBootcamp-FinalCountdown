@@ -1,18 +1,21 @@
 
-  .modal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-    width: 460px;
-    padding: 1.3rem;
-    min-height: 250px;
-    position: absolute;
-    top: 20%;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-  }
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Ensure content is vertically aligned */
+  gap: 0.4rem;
+  width: 460px;
+  padding: 1.3rem;
+  min-height: 250px;
+  position: fixed; /* Changed from absolute for centering */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset to center perfectly */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  z-index: 2; /* Ensure it is above other elements */
+}
   
   .modal .flex {
     display: flex;
@@ -74,9 +77,6 @@
     z-index: 1;
   }
 
-  .modal {
-    z-index: 2;
-  }
 
   .hidden {
     display: none;
