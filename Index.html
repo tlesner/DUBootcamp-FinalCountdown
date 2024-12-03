@@ -17,30 +17,49 @@
           <div class="theme-buttons">
             <button id="myBtn" class="theme-button">Theme 1</button>
                 <script>
-                    const myBtn = document.getElementById("myBtn");
-                    myBtn.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme1.css">
+                    const myBtn1 = document.getElementById("myBtn");
+                    myBtn1.addEventListener("click", function(e) {
+                        const link = document.createElement("link");
+                        link.rel = "stylesheet";
+                        link.href = "assets/css/theme1.css";
+                        document.head.appendChild(link);
                     });
                 </script>
-            <button class="theme-button">Theme 2</button>
                 <script>
-                    const myBtn = documment.getElementById("myBtn");
-                    myBtn.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme2.css">
-                    });  
+                    const myBtn2 = document.getElementById("myBtn");
+                    myBtn2.addEventListener("click", function(e) {
+                        const link = document.createElement("link");
+                        link.rel = "stylesheet";
+                        link.href = "assets/css/theme2.css";
+                        document.head.appendChild(link);
+                    });
                 </script>
-            <button class="theme-button">Theme 3</button>
                 <script>
-                    const myBtn = document.getElementById("myBtn");
-                    myBtn.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme3.css">
+                    const myBtn3 = document.getElementById("myBtn");
+                    myBtn3.addEventListener("click", function(e) {
+                        const link = document.createElement("link");
+                        link.rel = "stylesheet";
+                        link.href = "assets/css/theme3.css";
+                        document.head.appendChild(link);
+                    });
+                </script>
+                <script>
+                    const myBtn4 = document.getElementById("myBtn");
+                    myBtn4.addEventListener("click", function(e) {
+                        const link = document.createElement("link");
+                        link.rel = "stylesheet";
+                        link.href = "assets/css/theme4.css";
+                        document.head.appendChild(link);
                     });
                 </script>
             <button class="theme-button">Theme 4</button>
                 <script>
-                    const myBtn = document.getElementById("myBtn");
-                    myBtn.addEventListener("click", function(e) {
-                        <link rel="stylesheet" href="assets/css/theme4.css">
+                    const myBtn5 = document.getElementById("myBtn");
+                    myBtn5.addEventListener("click", function(e) {
+                        const link = document.createElement("link");
+                        link.rel = "stylesheet";
+                        link.href = "assets/css/theme4.css";
+                        document.head.appendChild(link);
                     });
                 </script>
           </div>
@@ -56,7 +75,7 @@
         <div class="main-container">
             <div class="timer-window">
                 <div class="timer-inputs">
-                    <img src="assets/images/Fianl-coundown-img-1.jpg" alt="Timer Window Image" class="timer-image">
+                    <img src="assets/images/Final-coundown-img-1.jpg" alt="Timer Window Image" class="timer-image">
                     <div class="input-overlay">
                         <input type="number" id="hours" placeholder="HH" min="0" max="23">
                         <span>:</span>
