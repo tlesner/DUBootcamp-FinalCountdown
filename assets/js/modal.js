@@ -27,7 +27,7 @@ const saveEmail = function () {
     const email = emailInput.value;
     if (email) {
         localStorage.setItem("subscribedEmail", email);
-        alert("Subscription saved!"); // Notify the user
+        alert("Right on ~Time~!"); // Notify the user
         closeModal();
     } else {
         alert("Please enter a valid email address!");
