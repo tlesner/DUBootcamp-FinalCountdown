@@ -1,12 +1,15 @@
-# DUBootcamp-FinalCountdown
-It's the Final Countdown.
+  # DU-Bootcamp-Final Caountdown
 
-- Why did we create this app?
-    - The team wanted a way to emphasize the time we had left in the DU Bootcamp.
+  ## It's the Final Countdown
 
-- What problem does this solve?
-    - Our countdown timer aims to give a visual representation of the time left in the bootcamp while giving its user a sense of comfort through pre-created themes.
+Our team wanted to build a project that was meaningful and usable in the rest of the bootcmap. This project allows the user to set timers when studying, taking a break, or otherwise in need of tracking time.
 
-- What did we learn?
-    - The team learned how to work in the git/github environment.
-    - The team learned how to pull, push and merge requests.
+**Link to project:** 
+
+**Tech used:** HTML, CSS, JavaScript.
+
+**to be added**
+
+## Lessons Learned:
+
+The team learned valuable lessons in working in a cooperative environment with conflicting approval requests and differing ideas. We learned the importance of letting all ideas come to the table and discussing the importance of these ideas for the project. The team learned how to pull, push and merge requests. 
