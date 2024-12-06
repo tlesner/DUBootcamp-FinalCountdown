@@ -1,4 +1,4 @@
-# DU-Bootcamp-Final Caountdown
+# DU-Bootcamp-Final Countdown
 
 ## It's the Final Countdown
 
